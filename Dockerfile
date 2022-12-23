@@ -1,6 +1,6 @@
 # app/Dockerfile
 
-FROM python:3.9-slim
+FROM ubuntu
 
 EXPOSE 8501
 
@@ -14,6 +14,8 @@ WORKDIR /app
 ADD requirements.txt /app/
 
 RUN apt-get update -y && apt-get install -y \
+    python3.9 \
+    python3-pip \
     build-essential gcc \
     apt-utils \
     gcc \
@@ -24,9 +26,11 @@ RUN apt-get update -y && apt-get install -y \
     libsndfile1-dev \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip3 install --upgrade pip
+
 COPY . .
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 ADD . /app
 
