@@ -6,7 +6,7 @@ Necessary downloads:
 
 Steps to rebuild:
 	1.Clone the repository.
-	2.Create free accounts on Google Cloud and setup a new project with all defaults.
+	2.Create free account on Google Cloud and setup a new project with all defaults.
 	3.Install Google Cloud SDK
 	4.Run 'gcloud init'
 		1. Select your project
@@ -18,4 +18,4 @@ Steps to rebuild:
 	8.Wait for the deploy to finish it will output the URL to navigate to the website.
 Optional:
 	Use your favorite python editor to alter or test the website.
-	To run the website locally run CD in to the repository and use CMD to input "streamlit run "
+	To run the website locally, CD into the repository and use CMD to input "streamlit run MLAccentRecognizer.py"
