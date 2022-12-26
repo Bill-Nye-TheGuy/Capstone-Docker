@@ -9,7 +9,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from EndToEndRefactor import ModelAssets
 from PIL import Image
-#from audio_recorder_streamlit import audio_recorder
+from audio_recorder_streamlit import audio_recorder
 import io
 import pandas as pd
 #%%Intro
@@ -107,11 +107,11 @@ with st.expander("Using the Model"):
         Models.createFeatures(uploaded_file)
         st.subheader("Your sample appears to have an accent from: " + Models.predictWithDL()[2:-2].upper())
     
-    #st.subheader("Record Audio to Predict on")
-    #st.write("Click and release button to record. It will record as long as there is significant audio coming in.")
-    #audio_bytes = audio_recorder()
-    #if audio_bytes:
-    #    st.audio(audio_bytes, format="audio/wav")
-    #    audio_bytes =io.BytesIO(audio_bytes)
-    #    Models.createFeatures(audio_bytes)
-    #    st.subheader("Your sample appears to have an accent from: " + Models.predictWithDL()[2:-2].upper())
+    st.subheader("Record Audio to Predict on")
+    st.write("Click and release button to record. It will record as long as there is significant audio coming in.")
+    audio_bytes = audio_recorder()
+    if audio_bytes:
+        st.audio(audio_bytes, format="audio/wav")
+        audio_bytes =io.BytesIO(audio_bytes)
+        Models.createFeatures(audio_bytes)
+        st.subheader("Your sample appears to have an accent from: " + Models.predictWithDL()[2:-2].upper())

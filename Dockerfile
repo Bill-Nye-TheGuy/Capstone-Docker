@@ -1,17 +1,10 @@
 # app/Dockerfile
 
-FROM ubuntu
+FROM gcr.io/google-appengine/python
 
-EXPOSE 8501
+EXPOSE 8080
 
-#RUN virtualenv /env -p python3.9
 
-#ENV VIRTUAL_ENV /env
-#ENV PATH /env/bin:$PATH
-
-WORKDIR /app
-
-ADD requirements.txt /app/
 
 RUN apt-get update -y && apt-get install -y \
     python3.9 \
@@ -29,6 +22,14 @@ RUN apt-get update -y && apt-get install -y \
 RUN pip3 install --upgrade pip
 
 COPY . .
+
+RUN pip3 install virtualenv
+
+RUN virtualenv /env
+
+ENV VIRTUAL_ENV /env
+ENV PATH /env/bin:$PATH
+ADD requirements.txt /app/
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
