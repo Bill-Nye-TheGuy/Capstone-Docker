@@ -1,6 +1,6 @@
 # app/Dockerfile
 
-FROM gcr.io/google-appengine/python
+FROM python:3.9-slim
 
 EXPOSE 8080
 
@@ -23,14 +23,14 @@ RUN pip3 install --upgrade pip
 
 COPY . .
 
-RUN pip3 install virtualenv
+#RUN pip3 install virtualenv
 
-RUN virtualenv /env
+#RUN virtualenv /env
 
-ENV VIRTUAL_ENV /env
-ENV PATH /env/bin:$PATH
+#ENV VIRTUAL_ENV /env
+#ENV PATH /env/bin:$PATH
 ADD requirements.txt /app/
-
+RUN python3 --version
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 ADD . /app
