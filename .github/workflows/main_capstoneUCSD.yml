@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://github.com/bill-nye-theguy/capstone-docker/
-        username: ${{ secrets.AzureAppService_ContainerUsername_230880a9941b4835a61bb2657f25e4f1 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_9be29cb2dee24e72b97b661c3934d337 }}
+        registry: https://mcr.microsoft.com/
+        username: ${{ secrets.AzureAppService_ContainerUsername_a124df62cd434ab6a040cab97cb8401d }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_bd79ad601a944a8591a47d383d2a6757 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: github.com/bill-nye-theguy/capstone-docker/${{ secrets.AzureAppService_ContainerUsername_230880a9941b4835a61bb2657f25e4f1 }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_a124df62cd434ab6a040cab97cb8401d }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'capstoneUCSD'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_08df101fb2e8451891880ba0408c7c20 }}
-        images: 'github.com/bill-nye-theguy/capstone-docker/${{ secrets.AzureAppService_ContainerUsername_230880a9941b4835a61bb2657f25e4f1 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_933e315e4d55446296cfe9342e22d91e }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_a124df62cd434ab6a040cab97cb8401d }}/appsvc/staticsite:${{ github.sha }}'
